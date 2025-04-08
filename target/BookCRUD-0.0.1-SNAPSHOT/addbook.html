@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Book</title>
+    <link rel="stylesheet" href="addstyle.css">
+</head>
+<body>
+    <header id="main-header">
+        <h1>📚 Online Bookstore</h1>
+        <nav id="navbar">
+            <a href="addBook.html">Add Book</a>
+            <a href="displayBooks.html">All Books</a>
+            <a href="updateBook.html">Update Book</a>
+            <a href="deleteBook.html">Delete Book</a>
+        </nav>
+    </header>
+
+    <main id="form-section">
+        <h2>Add New Book</h2>
+        <form id="registerForm">
+            <input type="hidden" name="action" value="register">
+            <div class="form-group">
+                <label>Book Name:</label>
+                <input type="text" name="bookName" required>
+            </div>
+            <div class="form-group">
+                <label>Author Name:</label>
+                <input type="text" name="authorName" required>
+            </div>
+            <div class="form-group">
+                <label>Price:</label>
+                <input type="number" name="price" required>
+            </div>
+            <div class="form-group">
+                <label>Book Type:</label>
+                <input type="text" name="booktype" required>
+            </div>
+            <button type="submit" id="submit-btn">Add</button>
+        </form>
+        <p id="message"></p>
+    </main>
+
+    <footer id="main-footer">
+        <p>&copy; 2025 Online Bookstore. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const baseUrl = window.location.pathname.includes('BookCRUD') ? '/BookCRUD' : '';
+        const booksUrl = `${baseUrl}/books`;
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch(booksUrl, {
+                method: 'POST',
+                body: new URLSearchParams(formData),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const message = document.getElementById('message');
+                if (data.error) {
+                    message.style.color = 'red';
+                    message.textContent = data.error === 'Invalid action' ? 'Invalid' : data.error;
+                } else {
+                    message.style.color = 'green';
+                    message.textContent = data.message;
+                    this.reset();
+                    setTimeout(() => window.location.href = 'displayBooks.html', 1000);
+                }
+            })
+            .catch(error => {
+                document.getElementById('message').textContent = 'Error: ' + error.message;
+            });
+        });
+    </script>
+</body>
+</html>

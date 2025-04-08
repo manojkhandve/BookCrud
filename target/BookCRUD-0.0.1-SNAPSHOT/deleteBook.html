@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Book</title>
+    <link rel="stylesheet" href="deleteBook.css">
+</head>
+<body>
+    <header id="main-header">
+        <h1>📚 Online Bookstore</h1>
+        <nav id="navbar">
+            <a href="addbook.html">Add Book</a>
+            <a href="displayBooks.html">All Books</a>
+            <a href="updateb.html">Update Book</a>
+            <a href="deleteBook.html">Delete Book</a>
+        </nav>
+    </header>
+
+    <main id="form-section">
+        <h2>Delete Book</h2>
+
+        <div class="form-group">
+            <label for="bookIdInput">Enter Book ID to Delete:</label>
+            <input type="number" id="bookIdInput" placeholder="Enter Book ID" required>
+            <button id="deleteBtn" class="btn btn-red" style="margin-top:10px;">Delete Book</button>
+        </div>
+
+        <p id="message"></p>
+    </main>
+
+    <footer id="main-footer">
+        <p>&copy; 2025 Online Bookstore. All rights reserved.</p>
+    </footer>
+
+    <script>
+    const baseUrl = window.location.pathname.includes('BookCRUD') ? '/BookCRUD' : '';
+    const booksUrl = `${baseUrl}/books`;
+
+    document.getElementById('deleteBtn').addEventListener('click', () => {
+        const id = document.getElementById('bookIdInput').value.trim();
+        const message = document.getElementById('message');
+
+        if (!id) {
+            message.style.color = 'red';
+            message.textContent = 'Please enter a Book ID.';
+            return;
+        }
+
+        if (confirm(`Are you sure you want to delete the book with ID: ${id}?`)) {
+            const formData = new URLSearchParams();
+            formData.append("action", "delete");
+            formData.append("bookId", id);
+
+            fetch(booksUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    message.style.color = 'red';
+                    message.textContent = data.error;
+                } else {
+                    message.style.color = 'green';
+                    message.textContent = data.message;
+                    document.getElementById('bookIdInput').value = '';
+                    setTimeout(() => window.location.href = 'displayBooks.html', 1000);
+                }
+            })
+            .catch(error => {
+                message.style.color = 'red';
+                message.textContent = 'Error deleting book: ' + error.message;
+            });
+        }
+    });
+</script>
+    
+</body>
+</html>

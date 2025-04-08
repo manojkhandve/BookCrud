@@ -1,0 +1,102 @@
+/* Header */
+#main-header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+#main-header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+#navbar {
+    margin-top: 10px;
+}
+
+#navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+#navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+#book-list-section {
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#book-list-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Table Styling */
+#booksTable {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+#booksTable thead {
+    background-color: #f1f1f1;
+}
+
+#booksTable th,
+#booksTable td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+#booksTable tr:hover {
+    background-color: #f9f9f9;
+}
+
+.action-link {
+    margin: 0 5px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.action-link.edit {
+    background-color: #28a745;
+    color: white;
+}
+
+.action-link.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.action-link:hover {
+    opacity: 0.85;
+}
+
+/* Message Paragraph */
+#message {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: red;
+}
+
+/* Footer */
+#main-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f1f1f1;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #555;
+}
