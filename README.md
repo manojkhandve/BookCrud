@@ -8,14 +8,13 @@ A simple Spring Boot CRUD application for managing books. This project demonstra
 - View list of all books
 - Update book details
 - Delete books
-- Web interface using Thymeleaf templates
-- H2 in-memory database for quick testing
+- Web interface using Html css javascript 
 
 ## Technologies Used
 
-- Java 11+
+- Java 
 - Spring Boot
-- Spring Data JPA
+- Hibernate and Jpa
 - Postgres Database
 - Maven
 
@@ -37,13 +36,17 @@ A simple Spring Boot CRUD application for managing books. This project demonstra
 #Screenshots
 
 1) View All Books
+   
    ![Screenshot 2025-04-12 090142](https://github.com/user-attachments/assets/378d701e-9103-46fb-bf2c-bb433ddd0745)
 
 2) Add Book
+   
    ![Screenshot 2025-04-12 090205](https://github.com/user-attachments/assets/052de61e-928b-4818-88d8-52757ec40abf)
 
 3) Update Book
+   
 ![Screenshot 2025-04-12 090344](https://github.com/user-attachments/assets/89dd30f9-18da-45ec-b82f-9d10b37594fc)
 
 4) Delete Book
+   
    ![Screenshot 2025-04-12 090256](https://github.com/user-attachments/assets/9ba80aff-90d7-49d2-8b39-763b15f5c9dd)
